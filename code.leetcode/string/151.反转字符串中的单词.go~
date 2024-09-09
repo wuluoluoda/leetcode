@@ -1,0 +1,25 @@
+package string
+
+import "strings"
+
+func reverseStr(s []string) []string {
+	left, right := 0, len(s)-1
+	for left < right {
+		s[left], s[right] = s[right], s[left]
+		left++
+		right--
+	}
+
+	return s
+}
+
+func reverseWords(s string) string {
+	//分裂\
+	ss := strings.Split(s, " ")
+	//检查分裂前后
+	//切片顺序调换
+	reverseStr(ss)
+	//拼接
+	res := strings.Join(ss, " ")
+	return res
+}
