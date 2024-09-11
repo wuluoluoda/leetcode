@@ -4,7 +4,8 @@ import (
 	"strings"
 )
 
-/*罗马数字包含以下七种字符: I， V， X， L，C，D 和 M。
+/*
+罗马数字包含以下七种字符: I， V， X， L，C，D 和 M。
 
 字符          数值
 I             1
@@ -13,7 +14,8 @@ X             10
 L             50
 C             100
 D             500
-M             1000*/
+M             1000
+*/
 func romanToInt(s string) int {
 	direction := 1
 	sum := 0
