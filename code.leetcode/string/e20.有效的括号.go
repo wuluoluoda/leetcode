@@ -1,6 +1,44 @@
 package string
 
-import "strings"
+func isValid(s string) bool {
+
+	stack := make([]byte, 0)
+	// len奇数直接false
+	if len(s)%2 == 1 {
+		return false
+	}
+	//用栈来处理好一些
+	//写一个map
+
+	pairs := map[byte]byte{
+		')': '(',
+		']': '[',
+		'}': '{',
+	}
+
+	// 遍历
+	for i := 0; i < len(s); i++ {
+
+		// 如果得到右括号，就出栈
+		// map存在代表着有左括号，出栈
+		// map存在意味着map值大于0（如果没有值byte为空）
+		if pairs[s[i]] > 0 {
+			//不能出栈或右括号与栈中左括号不对应
+			if len(stack) == 0 || stack[len(stack)-1] != pairs[s[i]] {
+				return false
+			}
+
+			//出栈
+			stack = stack[:len(stack)-1]
+
+		} else { //如果得到了一个左括号，就入栈
+			stack = append(stack, s[i])
+		}
+
+	}
+	// 栈中无数即可
+	return len(stack) == 0
+}
 
 /*func isValid(s string) bool {
 ss:=strings.Split(s, "")
@@ -37,7 +75,7 @@ if i%2==0&&lei[ss[i]]!=lei[ss[i+1]]{
 }
 return true
 }*/
-func isValid(s string) bool {
+/*func isValid(s string) bool {
 	//分裂字符串
 	ss := strings.Split(s, "")
 	//判断长度
@@ -68,4 +106,4 @@ func isValid(s string) bool {
 	}
 
 	return true
-}
+}*/
