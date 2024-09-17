@@ -1,0 +1,9 @@
+ # 创建一个虚拟头节点
+ cpp    ListNode* dummy = new ListNode(-1);
+go  prehead := &ListNode{Val: -1} // 创建一个虚拟头节点
+py     preHead = ListNode(-1)
+prev = preHead               # 使用 prev 指针追踪当前应该连接的位置
+//空链表
+py		headA!=None
+cpp     headA!=nullptr
+go		headA!=nil

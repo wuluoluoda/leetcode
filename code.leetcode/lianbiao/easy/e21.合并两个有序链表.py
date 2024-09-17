@@ -9,7 +9,7 @@ class Solution(object):
 		prev = preHead               # 使用 prev 指针追踪当前应该连接的位置
 
 		while l1 and l2 :
-			if l1.Val <= l2.Val :
+			if l1.val <= l2.val :
 				prev.next = l1
 				l1 = l1.next
 			else: 

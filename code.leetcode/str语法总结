@@ -1,0 +1,45 @@
+1.e20.有效的括号.go
+2.e125.验证回文串
+3.e171.Excel 表列序号
+
+4.cpp中
+    for (auto& ch : s)
+    而非for (auto& ch : s)
+    的好处是
+    4.1.可以避免对字符串的修改
+    4.2.可以避免对字符串的拷贝
+    4.3.可以避免对字符串的迭代器失效
+5.
+5.1    cpp
+        c1[ch - 'a']++这种写法可以把单词转化存在0到26的数组
+5.2    py
+        ord()函数可以把字符转化成ASCII码
+        c1[ord(ch.lower()) - ord('a')] += 1
+
+6.    go之前犯了一个误用值类型的错误，把num当成vim【char】了
+        if num, ok := vim[char]; ok {
+                    /*num--*/
+                    num--
+                    vim[char] = num
+                }
+7.    go中，字符串是不可变的，所以不能直接修改字符串中的字符，需要先将其转化为rune切片，然后修改切片中的字符，最后再将切片转化为字符串
+8.三种语言for range
+    8.1    cpp
+    for (int i =0;i<pattern.size();i++)//显然无法用range
+    8.2    py
+    for i in range(len(pattern)):
+    8.3    go
+    for i := range pattern {
+
+    }
+9.    cpp中，字符串的长度可以通过size()函数获取，而字符串的容量可以通过capacity()函数获取
+10.
+//cpp中只能按如下写
+// 对记录的位置进行反转
+       for (size_t i = 0; i < pos.size()/2; ++i) {
+            swap(ss[pos[i]], ss[pos[pos.size()-1-i]]);
+        }
+        ///gopy中还可以按如下写
+        for (int i = 0; i < pos.size()-1-i; ++i) {
+        		swap(ss[pos[i]], ss[pos[pos.size()-1-i]]);
+        	}
