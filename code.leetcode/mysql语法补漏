@@ -1,0 +1,66 @@
+UPDATE player set level=l where name='李四';//将李四的等级改为l
+UPDATE player set exp=0,gold=0;//将所有玩家的经验值和金币清零
+
+delete from player where level<10;//删除等级低于10的玩家
+
+SELECT *FROM player WHERE LeveL NOT BETWEEN 1 AND 10;//查询等级不在1到10之间的玩家
+
+*Tips: 
+常用通配符
+   .   任意一个字符
+^开头     $结尾
+[abc] 其中任意一个字符
+[a-z]范围内的任意一个字符
+A|B A或者B
+
+;//like查找很慢的,如果数据量大,还是要用elasticsearch来做
+        SELECT *FROM player WHERE:name REGEXP'^王.S';//查询名字以王开头,后面任意一个字符的玩家
+
+SELECT *FROM player WHERE email is null;//而非email=null
+SELECT *FROM player WHERE email is null or email =''://查询email为空或者为空字符串的玩家
+
+SELECT *FROM player ORDER BY level;//按等级升序排列
+SELECT *FROM player ORDER BY level DESC;//按等级降序排列
+SELECT *FROM player ORDER BY 5 DESC;//按第5列降序排列
+;//按等级降序排列,如果等级相同,则按经验值升序排列
+SELECT *FROM player ORDER BY level DEsC, exp;//exp默认升序
+SELECT *FROM player ORDER BY level DEsC, exp ASC ;//也可以
+
+SELECT COUNT(*)FRoM player;//查询玩家数量
+SELECT AVG(level)FROM player;//查询平均等级
+SELECT sex,count(*)from player group by sex;//按性别分组,查询每个性别的玩家数量
+
+SELECT level, count(level) from player group by level
+ \having count(level)>10;//查询等级大于10的玩家数量
+SELECT level,count(level) from player group by level having count(level)
+\>4 order by count(level) DESC;//查询等级大于4的玩家数量,按数量降序排列
+
+;//SUBSTR(name,1,1)//第一个1是检索开始位置,第二个1是检索长度
+SELECT SUBSTR(name,1,1),COUNT(SUBSTR(name, 1,1))from player;//查询名字首字母的统计
+GROUP BY SUBSTR(name,1,1);//按名字首字母分组
+HAVING COUNT(SUBSTR(name,1,1))>=5;//名字首字母出现次数大于等于5的
+ORDER BYCOUNT(SUBSTR(name,1,1))DESC;//按名字首字母出现次数降序排列
+;//分页查询
+LIMIT 3,3;//从第4个开始(偏移量为3 ),查询3个
+
+;//查询合并
+SELECT *FROM payer WHERE evel BETWEEN 1 AND
+UNION
+SELECT *FROM payer WHERE eXP BETWEEN 1AND 3;//查询等级在1到10之间,或者经验值在1到3之间的玩家
+
+;//查询等级在1到10之间,或者经验值在1到3之间的玩家,不排除重复记录
+SELECT *FROM payer WHERE evel BETWEEN 1 AND
+UNION ALL
+SELECT *FROM payer WHERE eXP BETWEEN 1AND 3;
+
+;//查询交集
+SELECT *FROM payer WHERE evel BETWEEN 1 AND
+INTERSECT
+SELECT *FROM payer WHERE eXP BETWEEN 1AND 3;//查询等级在1到10之间,*且经验值在1到3之间的玩家
+
+;//查询差集
+即
+;//查询等级在1到10之间,*且经验值不在1到3之间的玩家
+SELECT *FROM payer WHERE evel BETWEEN 1 AND
+EXCEPT
+SELECT *FROM payer WHERE eXP BETWEEN 1AND 3;
