@@ -1,0 +1,16 @@
+//位运算在  特殊方法
+#map不在的检查
+if i not in has :
+                return i
+//检验是否为2的幂
+n > 0 && (n & (n - 1)) == 0
+//map不存在，饭回true
+cpp    m.find(v) == m.end()
+切片加一位.
+//首位加一位，数值为1
+go			digits = append([]int{1}, digits...)
+cpp          digits.insert(digits.begin(), 1);
+python       digits.insert(0, 1)
+//e67.二进制求和.Py
+def addBinary(self, a, b):
+        return '{0:b}'.format(int(a, 2) + int(b, 2))

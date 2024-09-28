@@ -1,0 +1,2 @@
+//常量定义
+static constexpr int big = 1 << 30;
